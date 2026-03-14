@@ -359,6 +359,60 @@ MonoBehaviour:
   m_ObsoleteUseShadowQualitySettings: 0
   m_ObsoleteCustomShadowResolution: 512
   m_ObsoleteContactShadows: 0
+--- !u!1 &1064263351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1064263353}
+  - component: {fileID: 1064263352}
+  m_Layer: 0
+  m_Name: TreeManager (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1064263352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064263351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb89838aa7082d64ab5fdfb4751d1208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  axiom: F
+  iterations: 4
+  angle: 25
+  branchLength: 2
+  fRules:
+  - 'F[-F]F[+F][^F][&F]'
+  - 'F[+F][^F]'
+  - 'F[-F][&F]'
+  - 'F[F]'
+  branchPrefab: {fileID: 8970023663936823641, guid: 6801679e1fa72f940a0e7b621c290f52, type: 3}
+--- !u!4 &1064263353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064263351}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.22393, y: -0.1, z: -13.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1160208016
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,3 +820,4 @@ SceneRoots:
   - {fileID: 1022747912}
   - {fileID: 1837303562}
   - {fileID: 1160208018}
+  - {fileID: 1064263353}
