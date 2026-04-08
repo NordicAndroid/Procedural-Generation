@@ -16,8 +16,6 @@ public class NoiseTest : MonoBehaviour
     }
     void Update()
     {
-        noise.textureWidth = textureWidth;
-        noise.textureHeight = textureHeight;
         noise.xOrigin = xOrigin;
         noise.yOrigin = yOrigin;
         noise.scale = scale;
