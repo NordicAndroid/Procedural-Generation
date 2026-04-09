@@ -13,10 +13,8 @@ public class PerlinNoise : Noise
         {
             for (int j = 0; j < 256; j++)
             {
-                //float random = Random.Range(0f, 2 * Mathf.PI);
-                //gradientVectors[i,j] = new Vector2(Mathf.Cos(random), Mathf.Sin(random));
-                gradientVectors[i,j] = new Vector2(i,j);
-                gradientVectors[i,j] = gradientVectors[i,j].normalized;
+                float random = Random.Range(0f, 2 * Mathf.PI);
+                gradientVectors[i,j] = new Vector2(Mathf.Cos(random), Mathf.Sin(random));
             }
         }
 
@@ -78,7 +76,8 @@ public class PerlinNoise : Noise
         float dotbottomleft = (gradientbottomleft.x * bottomleft.x) + (gradientbottomleft.y * bottomleft.y);
         float dotbottomright = (gradientbottomright.x * bottomright.x) + (gradientbottomright.y * bottomright.y);
 
-        return Mathf.Lerp(Mathf.Lerp(dotbottomleft, dottopleft, yf), Mathf.Lerp(dotbottomright, dottopright, yf), xf);
+        float output = Mathf.Lerp(Mathf.Lerp(dotbottomleft, dottopleft, yf), Mathf.Lerp(dotbottomright, dottopright, yf), xf);
+        return (output + 1.0f) / 2.0f;
     }
 
     //Constructors with differing amounts of detail provided
