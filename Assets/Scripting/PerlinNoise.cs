@@ -76,7 +76,8 @@ public class PerlinNoise : Noise
         float dotbottomleft = (gradientbottomleft.x * bottomleft.x) + (gradientbottomleft.y * bottomleft.y);
         float dotbottomright = (gradientbottomright.x * bottomright.x) + (gradientbottomright.y * bottomright.y);
 
-        float output = Mathf.Lerp(Mathf.Lerp(dotbottomleft, dottopleft, yf), Mathf.Lerp(dotbottomright, dottopright, yf), xf);
+        float output = Mathf.SmoothStep(Mathf.SmoothStep(dotbottomleft, dottopleft, yf), Mathf.SmoothStep(dotbottomright, dottopright, yf), xf);
+
         return (output + 1.0f) / 2.0f;
     }
 
