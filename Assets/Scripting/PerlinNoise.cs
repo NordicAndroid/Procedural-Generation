@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PerlinNoise : Noise
 {
-    private Color[] pixels;
+    private Color[] pixels; //Array in which color values are stored in
     private Vector2[,] gradientVectors = new Vector2[256,256]; //array with the gradientvectors the noise is based on
 
     //method that generates random gradientvectors
@@ -76,8 +76,10 @@ public class PerlinNoise : Noise
         float dotbottomleft = (gradientbottomleft.x * bottomleft.x) + (gradientbottomleft.y * bottomleft.y);
         float dotbottomright = (gradientbottomright.x * bottomright.x) + (gradientbottomright.y * bottomright.y);
 
+        //bilinear interpolation between the four dot products calculated earlier
         float output = Mathf.SmoothStep(Mathf.SmoothStep(dotbottomleft, dottopleft, yf), Mathf.SmoothStep(dotbottomright, dottopright, yf), xf);
 
+        //maps the output on to the range [0, 1.0] from the range [-1, 1]
         return (output + 1.0f) / 2.0f;
     }
 
@@ -89,9 +91,9 @@ public class PerlinNoise : Noise
         this.xOrigin = xOrigin;
         this.yOrigin = yOrigin;
         this.scale = scale;
-        texture = new Texture2D(textureWidth, textureHeight);
-        pixels = new Color[textureWidth * textureHeight];
-        generateGradientVectors();
+        texture = new Texture2D(textureWidth, textureHeight); //initialize texture based on provided size
+        pixels = new Color[textureWidth * textureHeight]; //initialize pixels array with the right length based on texture size
+        generateGradientVectors(); //runs gradient vector generation
     }
     public PerlinNoise(int width, int height, float xOrigin, float yOrigin)
     {
