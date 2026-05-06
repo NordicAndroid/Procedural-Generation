@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PerlinNoise : Noise
 {
-    private Color[] pixels; //Array in which color values are stored in
     private Vector2[,] gradientVectors = new Vector2[256,256]; //array with the gradientvectors the noise is based on
 
     //method that generates random gradientvectors
@@ -84,33 +83,16 @@ public class PerlinNoise : Noise
     }
 
     //Constructors with differing amounts of detail provided
-    public PerlinNoise(int width, int height, float xOrigin, float yOrigin, float scale)
+    public PerlinNoise(int width, int height, float xOrigin, float yOrigin, float scale) : base(width, height, xOrigin, yOrigin, scale)
     {
-        this.textureWidth = width;
-        this.textureHeight = height;
-        this.xOrigin = xOrigin;
-        this.yOrigin = yOrigin;
-        this.scale = scale;
-        texture = new Texture2D(textureWidth, textureHeight); //initialize texture based on provided size
-        pixels = new Color[textureWidth * textureHeight]; //initialize pixels array with the right length based on texture size
         generateGradientVectors(); //runs gradient vector generation
     }
-    public PerlinNoise(int width, int height, float xOrigin, float yOrigin)
+    public PerlinNoise(int width, int height, float xOrigin, float yOrigin) : base(width, height, xOrigin, yOrigin)
     {
-        this.textureWidth = width;
-        this.textureHeight = height;
-        this.xOrigin = xOrigin;
-        this.yOrigin = yOrigin;
-        texture = new Texture2D(textureWidth, textureHeight);
-        pixels = new Color[textureWidth * textureHeight];
         generateGradientVectors();
     }
-    public PerlinNoise(int width, int height)
+    public PerlinNoise(int width, int height) : base(width, height)
     {
-        this.textureWidth = width;
-        this.textureHeight = height;
-        texture = new Texture2D(textureWidth, textureHeight);
-        pixels = new Color[textureWidth * textureHeight];
         generateGradientVectors();
     }
 }
