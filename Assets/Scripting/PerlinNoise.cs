@@ -32,25 +32,7 @@ public class PerlinNoise : Noise
         }
     }
 
-    //Method that calculates the texture
-    public override Texture2D CalculateTexture(){
-        for (float y = 0.0f; y < textureHeight; y++){
-            for (float x = 0.0f; x < textureWidth; x++) {
-                //Calculates the coordinates for where the noise is sampled.
-                float xCoord = xOrigin + x / textureWidth * scale;
-                float yCoord = yOrigin + y / textureHeight * scale;
-                //Stores the output of the noise function in a variable
-                float sample = NoiseFunction(xCoord, yCoord);
-                //Stores the sample in the pixels array.
-                pixels[(int)y * textureWidth + (int)x] = new Color(sample, sample, sample);
-            }
-        }
-        texture.SetPixels(pixels);
-        texture.Apply();
-        return texture;
-    }
-
-    private float NoiseFunction(float xCoord, float yCoord)
+    public override float NoiseFunction(float xCoord, float yCoord)
     {
         int X = (int)Mathf.Floor(xCoord) & 255;
         int Y = (int)Mathf.Floor(yCoord) & 255;

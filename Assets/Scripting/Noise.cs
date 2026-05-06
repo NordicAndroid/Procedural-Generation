@@ -2,18 +2,38 @@ using UnityEngine;
 
 public abstract class Noise
 {
-    public int textureWidth = 512;
-    public int textureHeight = 512;
-    public float xOrigin;
-    public float yOrigin;
-    public float scale = 1.0f;
+    protected int textureWidth = 512;
+    protected int textureHeight = 512;
+    protected float xOrigin;
+    protected float yOrigin;
+    protected float scale = 1.0f;
+    public virtual void updateScale(float newScale){this.scale = newScale;} //for testing, updates the scale of noise
 
-    private Color[] pixels; //Array in which color values are stored in
-    public Texture2D texture;
-    public abstract Texture2D CalculateTexture();
+    protected Color[] pixels; //Array in which color values are stored in
+    public Texture2D texture; //Output in texture form
+
+    //Method that calculates the texture
+    public virtual Texture2D CalculateTexture(){
+        for (float y = 0.0f; y < textureHeight; y++){
+            for (float x = 0.0f; x < textureWidth; x++) {
+                //Calculates the coordinates for where the noise is sampled.
+                float xCoord = xOrigin + x / textureWidth * scale;
+                float yCoord = yOrigin + y / textureHeight * scale;
+                //Stores the output of the noise function in a variable
+                float sample = NoiseFunction(xCoord, yCoord);
+                //Stores the sample in the pixels array.
+                pixels[(int)y * textureWidth + (int)x] = new Color(sample, sample, sample);
+            }
+        }
+        texture.SetPixels(pixels);
+        texture.Apply();
+        return texture;
+    }
+
+    public abstract float NoiseFunction(float xCoord, float yCoord);
 
     //Constructors
-    public Noise(int width, int height, float xOrigin, float yOrigin, float scale)
+    protected Noise(int width, int height, float xOrigin, float yOrigin, float scale)
     {
         this.textureWidth = width;
         this.textureHeight = height;
@@ -24,7 +44,7 @@ public abstract class Noise
         pixels = new Color[textureWidth * textureHeight]; //initialize pixels array with the right length based on texture size
     }
 
-    public Noise(int width, int height, float xOrigin, float yOrigin)
+    protected Noise(int width, int height, float xOrigin, float yOrigin)
     {
         this.textureWidth = width;
         this.textureHeight = height;
@@ -34,7 +54,7 @@ public abstract class Noise
         pixels = new Color[textureWidth * textureHeight];
     }
 
-    public Noise(int width, int height)
+    protected Noise(int width, int height)
     {
         this.textureWidth = width;
         this.textureHeight = height;
