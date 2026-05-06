@@ -9,13 +9,13 @@ public class WorldManager2 : MonoBehaviour
     public float depth = 20f; 
 
     private Terrain terrain;
-    private PerlinNoise customPerlin;
+    private Noise noise;
 
     void Start()
     {
         terrain = GetComponent<Terrain>();
-        customPerlin = new PerlinNoise(width, height, 0, 0, scale);
-        customPerlin.CalculateTexture();
+        noise = new FractalNoise(width, height, 0, 0, scale);
+        noise.CalculateTexture();
         
         GenerateTerrain();
         ApplyTextures();
@@ -33,7 +33,7 @@ public class WorldManager2 : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                heights[x, y] = customPerlin.texture.GetPixel(x, y).r;
+                heights[x, y] = noise.texture.GetPixel(x, y).r;
             }
         }
         terrainData.SetHeights(0, 0, heights);
@@ -54,7 +54,7 @@ public class WorldManager2 : MonoBehaviour
                 float xPercent = (float)x / aWidth;
                 float yPercent = (float)y / aHeight;
                 
-                float heightSample = customPerlin.texture.GetPixelBilinear(xPercent, yPercent).r;
+                float heightSample = noise.texture.GetPixelBilinear(xPercent, yPercent).r;
 
                 float[] weights = new float[terrainData.terrainLayers.Length];
 
