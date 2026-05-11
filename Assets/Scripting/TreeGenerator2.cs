@@ -16,12 +16,9 @@ public class TreeGenerator2 : MonoBehaviour {
     Stack<TransformInfoHelper> stack = new Stack<TransformInfoHelper>();
 
     Stack<int> splineIndexStack = new Stack<int>();
-    TransformInfoHelper helper;
     private List<List<Vector3>> LineList = new List<List<Vector3>>();
 
     [SerializeField] private Material treeMaterial;
-
-
 
     void Start()
     {
