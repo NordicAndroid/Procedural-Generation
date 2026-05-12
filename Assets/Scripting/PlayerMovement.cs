@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        transform.position = new Vector3(50, 20, 50); 
     }
 
     void FixedUpdate()
