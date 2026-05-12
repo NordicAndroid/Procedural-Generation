@@ -11,6 +11,7 @@ public abstract class Noise
 
     protected Color[] pixels; //Array in which color values are stored in
     public Texture2D texture; //Output in texture form
+    public float[,] heights;
 
     //Method that calculates the texture
     public virtual Texture2D CalculateTexture(){
@@ -42,6 +43,7 @@ public abstract class Noise
         this.scale = scale;
         texture = new Texture2D(textureWidth, textureHeight); //initialize texture based on provided size
         pixels = new Color[textureWidth * textureHeight]; //initialize pixels array with the right length based on texture size
+        heights = new float[textureWidth, textureHeight];
     }
 
     protected Noise(int width, int height, float xOrigin, float yOrigin)
@@ -52,6 +54,7 @@ public abstract class Noise
         this.yOrigin = yOrigin;
         texture = new Texture2D(textureWidth, textureHeight);
         pixels = new Color[textureWidth * textureHeight];
+        heights = new float[textureWidth, textureHeight];
     }
 
     protected Noise(int width, int height)
@@ -60,5 +63,6 @@ public abstract class Noise
         this.textureHeight = height;
         texture = new Texture2D(textureWidth, textureHeight);
         pixels = new Color[textureWidth * textureHeight];
+        heights = new float[textureWidth, textureHeight];
     }
 }

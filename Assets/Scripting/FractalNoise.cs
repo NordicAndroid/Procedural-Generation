@@ -13,6 +13,7 @@ public class FractalNoise : Noise
                 float sample = NoiseFunction(x,y);
                 //Stores the sample in the pixels array.
                 pixels[(int)y * textureWidth + (int)x] = new Color(sample, sample, sample);
+                heights[(int)x,(int)y] = sample;
             }
         }
         texture.SetPixels(pixels);

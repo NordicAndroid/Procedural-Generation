@@ -29,13 +29,7 @@ public class WorldManager2 : MonoBehaviour
 
         float[,] heights = new float[width, height];
 
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                heights[x, y] = noise.texture.GetPixel(x, y).r;
-            }
-        }
+        heights = noise.heights;
         terrainData.SetHeights(0, 0, heights);
     }
 
