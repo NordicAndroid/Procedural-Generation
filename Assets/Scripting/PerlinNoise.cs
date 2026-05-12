@@ -30,12 +30,23 @@ public class PerlinNoise : Noise
                 gradientVectors[i,j] = vectorstash;
             }
         }
+
+        //the borders get aligned, so that the noise is seamless.
+        for (int i = 0; i < 256; i++)
+        {
+            gradientVectors[i, 255] = gradientVectors[i, 0];
+            gradientVectors[255, i] = gradientVectors[0, i];
+        }
     }
 
     public override float NoiseFunction(float xCoord, float yCoord)
     {
-        int X = (int)Mathf.Floor(xCoord) & 255;
-        int Y = (int)Mathf.Floor(yCoord) & 255;
+        //make sure the numbers are within bounds of the array
+        int X = (int)Mathf.Floor(xCoord) % 255;
+        int Y = (int)Mathf.Floor(yCoord) % 255;
+        if (X < 0){X += 255;}
+        if (Y < 0){Y += 255;}
+
         float xf = xCoord - Mathf.Floor(xCoord);
         float yf = yCoord - Mathf.Floor(yCoord);
 

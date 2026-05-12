@@ -8,6 +8,7 @@ public abstract class Noise
     protected float yOrigin;
     protected float scale = 1.0f;
     public virtual void updateScale(float newScale){this.scale = newScale;} //for testing, updates the scale of noise
+    public virtual void updateOrigin(float xOrigin, float yOrigin){this.xOrigin = xOrigin; this.yOrigin = yOrigin;} //for testing, updates origin
 
     protected Color[] pixels; //Array in which color values are stored in
     public Texture2D texture; //Output in texture form

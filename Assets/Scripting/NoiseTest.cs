@@ -4,6 +4,8 @@ public class NoiseTest : MonoBehaviour
 {
     public int textureWidth = 512;
     public int textureHeight = 512;
+    public float xOrigin = 0f;
+    public float yOrigin = 0f;
     public float scale = 1.0f;
     public Noise noise;
 
@@ -15,6 +17,7 @@ public class NoiseTest : MonoBehaviour
     void Update()
     {
         noise.updateScale(scale);
+        noise.updateOrigin(xOrigin, yOrigin);
         noise.CalculateTexture();
     }
 }
