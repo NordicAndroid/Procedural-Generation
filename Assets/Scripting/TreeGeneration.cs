@@ -14,7 +14,7 @@ public class TreeGeneration
     }
 
     // GenerationController should call this method to create a tree
-    public void SpawnPlant(Vector3 position)
+    public Plant SpawnPlant(Vector3 position)
     {
         // The L-string is expanded here
         string expandedString = GenerateLSystemString();
@@ -25,6 +25,7 @@ public class TreeGeneration
         plantScript.Initialize(expandedString, 1f, 0.1f, treeMaterial);
 
         //newPlantObj.transform.position = position;
+        return plantScript;
     }
 
     private string GenerateLSystemString()

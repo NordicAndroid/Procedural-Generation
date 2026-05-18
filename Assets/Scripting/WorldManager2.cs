@@ -7,9 +7,12 @@ public class WorldManager2 : MonoBehaviour
     public int height = 256;
     public float scale = 20f;
     public float depth = 20f; 
+    public GameObject aPlantPrefab;
+    public Material aTreeMat;
 
     private Terrain terrain;
     private Noise noise;
+    private TreeGeneration treeFactory;
 
     void Start()
     {
@@ -19,6 +22,9 @@ public class WorldManager2 : MonoBehaviour
         
         GenerateTerrain();
         ApplyTextures();
+
+        treeFactory = new TreeGeneration( aPlantPrefab, aTreeMat);
+        SpawnVegetation();
     }
 
     void GenerateTerrain()
@@ -52,9 +58,9 @@ public class WorldManager2 : MonoBehaviour
 
                 float[] weights = new float[terrainData.terrainLayers.Length];
 
-                if (heightSample < 0.25f) 
+                if (heightSample < 0.20f) 
                     weights[0] = 1.0f;
-                else if (heightSample < 0.55f) 
+                else if (heightSample < 0.30f) 
                     weights[1] = 1.0f;
                 else 
                     weights[2] = 1.0f;
@@ -66,5 +72,40 @@ public class WorldManager2 : MonoBehaviour
             }
         }
         terrainData.SetAlphamaps(0, 0, splatmapData);
+    }
+
+void SpawnVegetation()
+    {
+        TerrainData terrainData = terrain.terrainData;
+        int treeCountToSpawn = 500;
+
+        for (int i = 0; i < treeCountToSpawn; i++)
+        {
+            //Random coordinates
+            float randomX = Random.Range(0, width);
+            float randomZ = Random.Range(0, height);
+
+            Vector3 spawnPos = new Vector3(randomX, 0, randomZ);
+            
+            //get the height value from the terrain
+            float worldHeight = terrain.SampleHeight(spawnPos);
+
+            float normalizedHeight = worldHeight / depth;
+
+            //plant on the black area
+            if (normalizedHeight >= 0.20f && normalizedHeight < 0.30f)
+            {
+                float xPercent = randomX / width;
+                float yPercent = randomZ / height;
+
+                //get the steepness and eliminate some points
+                float steepness = terrainData.GetSteepness(xPercent, yPercent);
+                if (steepness < 25f)
+                {
+                    spawnPos.y = worldHeight;
+                    treeFactory.SpawnPlant(spawnPos);
+                }
+            }
+        }
     }
 }
