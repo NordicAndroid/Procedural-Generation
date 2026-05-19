@@ -13,6 +13,9 @@ public class WorldManager2 : MonoBehaviour
     private Terrain terrain;
     private Noise noise;
     private TreeGeneration treeFactory;
+    public int treeCountToSpawn = 500;
+    Plant[] spawnedPlant;
+    public GameObject Treeparent;
 
     void Start()
     {
@@ -24,6 +27,16 @@ public class WorldManager2 : MonoBehaviour
         ApplyTextures();
 
         treeFactory = new TreeGeneration( aPlantPrefab, aTreeMat);
+        SpawnVegetation();
+    }
+    public void Recalculate()
+    {
+        DespawnPlants();
+        noise = new FractalNoise(width, height, 0, 0, scale);
+        noise.CalculateTexture();
+        GenerateTerrain();
+        ApplyTextures();
+        treeFactory = new TreeGeneration(aPlantPrefab, aTreeMat);
         SpawnVegetation();
     }
 
@@ -76,8 +89,9 @@ public class WorldManager2 : MonoBehaviour
 
 void SpawnVegetation()
     {
+        
         TerrainData terrainData = terrain.terrainData;
-        int treeCountToSpawn = 500;
+        spawnedPlant = new Plant[treeCountToSpawn];
 
         for (int i = 0; i < treeCountToSpawn; i++)
         {
@@ -107,5 +121,13 @@ void SpawnVegetation()
                 }
             }
         }
+    }
+    void DespawnPlants()
+    {
+        GameObject[] trees = new GameObject[treeCountToSpawn];
+        trees = GameObject.FindGameObjectsWithTag("Tree");
+        foreach (GameObject oneObject in trees)
+            Destroy(oneObject);
+
     }
 }

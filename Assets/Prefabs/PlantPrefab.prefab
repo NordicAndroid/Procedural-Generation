@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1846284113150371175}
   m_Layer: 0
   m_Name: PlantPrefab
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,11 +44,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e485a8ab0dc6b246a33c0645f39897b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Plant
-  treeString: FB
-  length: 0.6
-  branchRadius: 0.1
-  angleMin: 60
-  angleMax: 30
-  angleYMin: 60
-  angleYMax: 100
-  treeMaterial: {fileID: 2100000, guid: f0c777952a7074043bed0abf8650e7b4, type: 2}
