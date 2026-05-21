@@ -32,7 +32,7 @@ public class WorldManager : MonoBehaviour
 
     public void GenerateWorld()
     {
-        perlin = new PerlinNoise(width, height, xOrigin, yOrigin, scale);
+        perlin = new PerlinNoise(width, height);
         perlin.CalculateTexture();
 
         CreateMeshShape();

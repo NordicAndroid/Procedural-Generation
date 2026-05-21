@@ -7,6 +7,8 @@ public class PerlinNoise : Noise
     //method that generates random gradientvectors
     private void generateGradientVectors()
     {
+        if (seed != null){Random.InitState((int)seed);}
+
         //array gets filled with random vectors
         for (int i = 0; i < 256; i++)
         {
@@ -76,11 +78,15 @@ public class PerlinNoise : Noise
     }
 
     //Constructors with differing amounts of detail provided
-    public PerlinNoise(int width, int height, float xOrigin, float yOrigin, float scale) : base(width, height, xOrigin, yOrigin, scale)
+    public PerlinNoise(int width, int height, int? seed, float xOrigin, float yOrigin, float scale) : base(width, height, seed, xOrigin, yOrigin, scale)
     {
         generateGradientVectors(); //runs gradient vector generation
     }
-    public PerlinNoise(int width, int height, float xOrigin, float yOrigin) : base(width, height, xOrigin, yOrigin)
+    public PerlinNoise(int width, int height, int? seed, float xOrigin, float yOrigin) : base(width, height, seed, xOrigin, yOrigin)
+    {
+        generateGradientVectors();
+    }
+    public PerlinNoise(int width, int height, int? seed) : base(width, height, seed)
     {
         generateGradientVectors();
     }

@@ -41,7 +41,7 @@ public class FractalNoise : Noise
     {
         for (int i = 0; i < layers; i++)
         {
-            noiseArray[i] = new PerlinNoise(textureWidth, textureHeight, xOrigin, yOrigin, scale * i);
+            noiseArray[i] = new PerlinNoise(textureWidth, textureHeight, seed, xOrigin, yOrigin, scale * i);
         }
     }
 
@@ -55,11 +55,15 @@ public class FractalNoise : Noise
         }
 
     //Constructors
-    public FractalNoise(int width, int height, float xOrigin, float yOrigin, float scale) : base(width, height, xOrigin, yOrigin, scale)
+    public FractalNoise(int width, int height, int? seed, float xOrigin, float yOrigin, float scale) : base(width, height, seed, xOrigin, yOrigin, scale)
     {
         fillNoiseArray();
     }
-    public FractalNoise(int width, int height, float xOrigin, float yOrigin) : base(width, height, xOrigin, yOrigin)
+    public FractalNoise(int width, int height, int? seed, float xOrigin, float yOrigin) : base(width, height, seed, xOrigin, yOrigin)
+    {
+        fillNoiseArray();
+    }
+    public FractalNoise(int width, int height, int? seed) : base(width, height, seed)
     {
         fillNoiseArray();
     }

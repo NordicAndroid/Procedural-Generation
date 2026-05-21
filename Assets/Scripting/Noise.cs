@@ -7,6 +7,7 @@ public abstract class Noise
     protected float xOrigin;
     protected float yOrigin;
     protected float scale = 1.0f;
+    protected int? seed;
     public virtual void updateScale(float newScale){this.scale = newScale;} //for testing, updates the scale of noise
     public virtual void updateOrigin(float xOrigin, float yOrigin){this.xOrigin = xOrigin; this.yOrigin = yOrigin;} //for testing, updates origin
 
@@ -35,10 +36,11 @@ public abstract class Noise
     public abstract float NoiseFunction(float xCoord, float yCoord);
 
     //Constructors
-    protected Noise(int width, int height, float xOrigin, float yOrigin, float scale)
+    protected Noise(int width, int height, int? seed, float xOrigin, float yOrigin, float scale)
     {
         this.textureWidth = width;
         this.textureHeight = height;
+        this.seed = seed;
         this.xOrigin = xOrigin;
         this.yOrigin = yOrigin;
         this.scale = scale;
@@ -47,12 +49,23 @@ public abstract class Noise
         heights = new float[textureWidth, textureHeight];
     }
 
-    protected Noise(int width, int height, float xOrigin, float yOrigin)
+    protected Noise(int width, int height, int? seed, float xOrigin, float yOrigin)
     {
         this.textureWidth = width;
         this.textureHeight = height;
+        this.seed = seed;
         this.xOrigin = xOrigin;
         this.yOrigin = yOrigin;
+        texture = new Texture2D(textureWidth, textureHeight);
+        pixels = new Color[textureWidth * textureHeight];
+        heights = new float[textureWidth, textureHeight];
+    }
+
+    protected Noise(int width, int height, int? seed)
+    {
+        this.textureWidth = width;
+        this.textureHeight = height;
+        this.seed = seed;
         texture = new Texture2D(textureWidth, textureHeight);
         pixels = new Color[textureWidth * textureHeight];
         heights = new float[textureWidth, textureHeight];

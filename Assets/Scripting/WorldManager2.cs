@@ -1,8 +1,10 @@
 using UnityEngine;
+using System;
 
 public class WorldManager2 : MonoBehaviour
 {
     [Header("World Settings")]
+    public int? seed;
     public int width = 256;
     public int height = 256;
     public float scale = 20f;
@@ -20,7 +22,14 @@ public class WorldManager2 : MonoBehaviour
     void Start()
     {
         terrain = GetComponent<Terrain>();
-        noise = new FractalNoise(width, height, 0, 0, scale);
+
+        if (seed != null){
+            noise = new FractalNoise(width, height, seed);
+        }
+        else{
+            noise = new FractalNoise(width, height);
+            Debug.Log("Not providing seed at initial generation");
+        }
         noise.CalculateTexture();
         
         GenerateTerrain();
@@ -32,12 +41,26 @@ public class WorldManager2 : MonoBehaviour
     public void Recalculate()
     {
         DespawnPlants();
-        noise = new FractalNoise(width, height, 0, 0, scale);
+        if (seed != null){
+            noise = new FractalNoise(width, height, seed);
+        }
+        else{
+            noise = new FractalNoise(width, height);
+            Debug.Log("Not providing seed");
+        }
         noise.CalculateTexture();
         GenerateTerrain();
         ApplyTextures();
         treeFactory = new TreeGeneration(aPlantPrefab, aTreeMat);
         SpawnVegetation();
+    }
+    public void updateSeed(string seedString){
+        try{
+            seed = int.Parse(seedString);
+        }
+        catch(Exception e){
+            seed = null;
+        }
     }
 
     void GenerateTerrain()
@@ -95,9 +118,9 @@ void SpawnVegetation()
 
         for (int i = 0; i < treeCountToSpawn; i++)
         {
-            //Random coordinates
-            float randomX = Random.Range(0, width);
-            float randomZ = Random.Range(0, height);
+            //UnityEngine.Random coordinates
+            float randomX = UnityEngine.Random.Range(0, width);
+            float randomZ = UnityEngine.Random.Range(0, height);
 
             Vector3 spawnPos = new Vector3(randomX, 0, randomZ);
             
