@@ -22,7 +22,7 @@ public class TreeGeneration
         GameObject newPlantObj = UnityEngine.Object.Instantiate(plantPrefab, position, Quaternion.identity);
 
         Plant plantScript = newPlantObj.GetComponent<Plant>();
-        plantScript.Initialize(expandedString, 1f, 0.1f, treeMaterial);
+        plantScript.Initialize(expandedString, 0.6f, 0.1f, treeMaterial);
 
         //newPlantObj.transform.position = position;
         return plantScript;
@@ -37,7 +37,7 @@ public class TreeGeneration
             foreach (char c in currentTree)
             {
                 if (c == 'F') nextIteration += (Random.value < 0.5f) ? "F" : "FF";
-                else if (c == 'B') nextIteration += (Random.value < 0.5f) ? "[llFB][rFB]" : "[lFB][rrFB]";
+                else if (c == 'B') nextIteration += (Random.value < 0.5f) ? "[llFBL][rFBL]" : "[lFBL][rrFBL]";
                 else nextIteration += c;
             }
             currentTree = nextIteration;

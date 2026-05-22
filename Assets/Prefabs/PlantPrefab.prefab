@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e485a8ab0dc6b246a33c0645f39897b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Plant
+  leafPrefab: {fileID: 8857497089949327466, guid: 6b7a289ae7b55b546804da31b823c54a, type: 3}
