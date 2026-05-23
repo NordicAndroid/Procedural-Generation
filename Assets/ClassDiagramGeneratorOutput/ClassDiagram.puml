@@ -1,0 +1,205 @@
+@startuml
+interface IClassDiagramImporter {
+}
+interface IClassDiagramParser {
+}
+interface ICodeSkeletonGenerator {
+}
+interface IPlantUmlExporter {
+}
+class DiagramGenerationService {
+    - _parser : IClassDiagramParser
+    - _exporter : IPlantUmlExporter
+}
+class DiagramImportAndSkeletonService {
+    - _importer : IClassDiagramImporter
+    - _generator : ICodeSkeletonGenerator
+}
+class GenerateDiagramRequest {
+}
+class GenerateDiagramResult {
+}
+class GenerateSkeletonRequest {
+    + SkipExistingFiles : bool
+}
+class GenerateSkeletonResult {
+}
+class DiagramFieldModel {
+    + Name : string
+    + Type : string
+    + Visibility : string
+}
+class DiagramMethodModel {
+    + Name : string
+    + ReturnType : string
+    + Visibility : string
+    + Parameters : List<DiagramParameterModel>
+}
+class DiagramParameterModel {
+    + Name : string
+    + Type : string
+}
+class DiagramPropertyModel {
+    + Name : string
+    + Type : string
+    + Visibility : string
+}
+class DiagramTypeModel {
+    + Name : string
+    + Namespace : string
+    + Summary : string
+    + BaseType : string
+    + IsAbstract : bool
+    + IsInterface : bool
+    + Interfaces : List<string>
+    + Fields : List<DiagramFieldModel>
+    + Properties : List<DiagramPropertyModel>
+    + Methods : List<DiagramMethodModel>
+    + LocalCalls : List<string>
+}
+class PlantUmlExporter {
+}
+class PlantUmlDiagramImporter {
+}
+class RegexClassDiagramParser {
+}
+class PlantUmlUrlEncoder {
+    - EncodeMap : string
+}
+class CameraFollow {
+    + target : GameObject
+    + offset : Vector3
+    + smoothSpeed : float
+}
+class FractalNoise {
+    - layers : int
+    - noiseArray : Noise[]
+}
+class Noise <<abstract>> {
+    # textureWidth : int
+    # textureHeight : int
+    # xOrigin : float
+    # yOrigin : float
+    # scale : float
+    # seed : int?
+    # pixels : Color[]
+    + texture : Texture2D
+    + heights : float[,]
+    + NoiseFunction(xCoord : float, yCoord : float) : float
+}
+class NoiseTest {
+    + textureWidth : int
+    + textureHeight : int
+    + xOrigin : float
+    + yOrigin : float
+    + scale : float
+    + noise : Noise
+}
+class PerlinNoise {
+    - gradientVectors : Vector2[,]
+}
+class Plant {
+    - treeString : string
+    - length : float
+    - branchRadius : float
+    - angleMin : float
+    - treeMaterial : Material
+    - stack : Stack<TransformInfoHelper>
+    - splineIndexStack : Stack<int>
+}
+class PlayerMovement {
+    + speed : float
+    - rb : Rigidbody
+}
+class PlayerSpawn {
+    + player : GameObject
+    + startMenu : Canvas
+}
+class TransformInfoHelper {
+    + position : Vector3
+    + rotation : Quaternion
+}
+class TreeGeneration {
+    - axiom : string
+    - iterations : int
+    - plantPrefab : GameObject
+    - treeMaterial : Material
+}
+class TreeGenerator {
+    + aPlantPrefab : GameObject
+    + aTreeMat : Material
+    - treeFactory : TreeGeneration
+}
+class TreeGenerator2 {
+    - tree : string
+    - LineList : List<List<Vector3>>
+}
+class TreeGeneratorExtention {
+}
+class WorldManager {
+    + width : int
+    + height : int
+    + scale : float
+    + xOrigin : float
+    + yOrigin : float
+    + heightMultiplier : float
+    + heightCurve : AnimationCurve
+    + terrainGradient : Gradient
+    - mesh : Mesh
+    - vertices : Vector3[]
+    - triangles : int[]
+    - colors : Color[]
+    - perlin : PerlinNoise
+}
+class WorldManager2 {
+    + seed : int?
+    + width : int
+    + height : int
+    + scale : float
+    + depth : float
+    + aPlantPrefab : GameObject
+    + aTreeMat : Material
+    - terrain : Terrain
+    - noise : Noise
+    - treeFactory : TreeGeneration
+    + treeCountToSpawn : int
+    + Treeparent : GameObject
+}
+class ReadmeEditor {
+}
+class Readme {
+    + icon : Texture2D
+    + title : string
+    + sections : Section[]
+    + loadedLayout : bool
+}
+class Section {
+}
+IPlantUmlExporter <|-- PlantUmlExporter
+IClassDiagramImporter <|-- PlantUmlDiagramImporter
+IClassDiagramParser <|-- RegexClassDiagramParser
+MonoBehaviour <|-- CameraFollow
+Noise <|-- FractalNoise
+MonoBehaviour <|-- NoiseTest
+Noise <|-- PerlinNoise
+MonoBehaviour <|-- Plant
+MonoBehaviour <|-- PlayerMovement
+MonoBehaviour <|-- PlayerSpawn
+MonoBehaviour <|-- TreeGenerator
+MonoBehaviour <|-- TreeGenerator2
+MonoBehaviour <|-- WorldManager
+MonoBehaviour <|-- WorldManager2
+Editor <|-- ReadmeEditor
+ScriptableObject <|-- Readme
+DiagramGenerationService --> IClassDiagramParser : _parser
+DiagramGenerationService --> IPlantUmlExporter : _exporter
+DiagramImportAndSkeletonService --> IClassDiagramImporter : _importer
+DiagramImportAndSkeletonService --> ICodeSkeletonGenerator : _generator
+FractalNoise --> Noise : NoiseFunction()
+NoiseTest --> Noise : noise
+PerlinNoise --> Noise : NoiseFunction()
+TreeGenerator --> TreeGeneration : treeFactory
+WorldManager --> PerlinNoise : perlin
+WorldManager2 --> Noise : noise
+WorldManager2 --> TreeGeneration : treeFactory
+@enduml

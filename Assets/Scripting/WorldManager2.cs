@@ -16,8 +16,6 @@ public class WorldManager2 : MonoBehaviour
     private Noise noise;
     private TreeGeneration treeFactory;
     public int treeCountToSpawn = 500;
-    Plant[] spawnedPlant;
-    public GameObject Treeparent;
 
     void Start()
     {
@@ -114,7 +112,6 @@ void SpawnVegetation()
     {
         
         TerrainData terrainData = terrain.terrainData;
-        spawnedPlant = new Plant[treeCountToSpawn];
 
         for (int i = 0; i < treeCountToSpawn; i++)
         {
