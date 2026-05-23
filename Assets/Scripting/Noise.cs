@@ -26,6 +26,23 @@ public abstract class Noise
                 float sample = NoiseFunction(xCoord, yCoord);
                 //Stores the sample in the pixels array.
                 pixels[(int)y * textureWidth + (int)x] = new Color(sample, sample, sample);
+                heights[(int)x,(int)y] = sample;
+            }
+        }
+        texture.SetPixels(pixels);
+        texture.Apply();
+        return texture;
+    }
+
+    public Texture2D CalculateIslandTexture(){
+        this.CalculateTexture();
+        for(int y = 0; y < textureHeight; y++){
+            for(int x = 0; x < textureWidth; x++){
+                Vector3 centerCoords = new Vector3(textureWidth / 2, textureHeight / 2);
+                float distFromCenter = Mathf.Sqrt((centerCoords.x - x) * (centerCoords.x - x) + (centerCoords.y - y) * (centerCoords.y - y));
+                float sample = heights[x,y] / (0.0000001f * distFromCenter * distFromCenter * distFromCenter + 1) ;
+                heights[x,y] = sample;
+                pixels[y * textureWidth + x] = new Color(sample, sample, sample);
             }
         }
         texture.SetPixels(pixels);

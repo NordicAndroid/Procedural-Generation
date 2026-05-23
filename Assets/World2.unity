@@ -575,7 +575,7 @@ Transform:
   m_GameObject: {fileID: 187054195}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 247.5, y: 45.5, z: 93.7}
+  m_LocalPosition: {x: 247.5, y: 113.4, z: 93.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1757,12 +1757,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WorldManager2
   width: 512
   height: 512
-  scale: 4
-  depth: 100
+  scale: 2
+  depth: 300
   aPlantPrefab: {fileID: 1393204985216401875, guid: 32ebb73509362684e805be820eb3b608, type: 3}
   aTreeMat: {fileID: 2100000, guid: f0c777952a7074043bed0abf8650e7b4, type: 2}
   treeCountToSpawn: 500
-  Treeparent: {fileID: 1395418896}
 --- !u!218 &1606031362
 Terrain:
   m_ObjectHideFlags: 0

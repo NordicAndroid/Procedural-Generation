@@ -29,7 +29,7 @@ public class WorldManager2 : MonoBehaviour
             Debug.Log("Not providing seed at initial generation");
         }
         noise.updateScale(scale);
-        noise.CalculateTexture();
+        noise.CalculateIslandTexture();
         
         GenerateTerrain();
         ApplyTextures();
@@ -48,7 +48,7 @@ public class WorldManager2 : MonoBehaviour
             Debug.Log("Not providing seed");
         }
         noise.updateScale(scale);
-        noise.CalculateTexture();
+        noise.CalculateIslandTexture();
         GenerateTerrain();
         ApplyTextures();
         treeFactory = new TreeGeneration(aPlantPrefab, aTreeMat);
