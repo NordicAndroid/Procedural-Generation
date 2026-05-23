@@ -455,6 +455,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15041a6aecca72ce896917924fdb9a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoiseTest
+  textureWidth: 512
+  textureHeight: 512
+  xOrigin: 0
+  yOrigin: 0
+  scale: 2
+  seed: 17
 --- !u!1 &1878663080
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ public class WorldManager2 : MonoBehaviour
             noise = new FractalNoise(width, height);
             Debug.Log("Not providing seed at initial generation");
         }
+        noise.updateScale(scale);
         noise.CalculateTexture();
         
         GenerateTerrain();
@@ -46,6 +47,7 @@ public class WorldManager2 : MonoBehaviour
             noise = new FractalNoise(width, height);
             Debug.Log("Not providing seed");
         }
+        noise.updateScale(scale);
         noise.CalculateTexture();
         GenerateTerrain();
         ApplyTextures();

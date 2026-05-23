@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FractalNoise : Noise
 {
-    private static int layers = 4;
+    private static int layers = 32;
     private Noise[] noiseArray = new Noise[layers];
     
 
@@ -31,9 +31,8 @@ public class FractalNoise : Noise
             //Calculates the coordinates for where the noise is sampled.
             float xCoord = xOrigin + x / textureWidth * scale * (i + 1);
             float yCoord = yOrigin + y / textureHeight * scale * (i + 1);
-            sample = sample + (noiseArray[i].NoiseFunction(xCoord,yCoord) / (i + 1));
+            sample += noiseArray[i].NoiseFunction(xCoord,yCoord) / ((i + 1) * (i + 1) * 2);
         }
-        sample = sample / layers;
         return sample;
     }
 
@@ -41,7 +40,8 @@ public class FractalNoise : Noise
     {
         for (int i = 0; i < layers; i++)
         {
-            noiseArray[i] = new PerlinNoise(textureWidth, textureHeight, seed, xOrigin, yOrigin, scale * i);
+            noiseArray[i] = new PerlinNoise(textureWidth, textureHeight, seed, xOrigin, yOrigin, scale * (i + 1));
+            if(seed != null) seed += 1;
         }
     }
 
