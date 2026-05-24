@@ -40,7 +40,7 @@ public class FractalNoise : Noise
     {
         for (int i = 0; i < layers; i++)
         {
-            noiseArray[i] = new PerlinNoise(textureWidth, textureHeight, seed);
+            noiseArray[i] = new PerlinNoise(textureWidth, textureHeight, seed, xOrigin, yOrigin, scale * (i + 1));
             if(seed != null) seed += 1;
         }
     }
