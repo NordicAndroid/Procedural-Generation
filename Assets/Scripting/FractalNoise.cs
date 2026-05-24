@@ -53,6 +53,14 @@ public class FractalNoise : Noise
         }
     }
 
+    public override string ToString(){
+	string output = "Type: "+this.GetType()+", seed: "+seed+", scale: "+scale+"\n";
+	for(int i = 0; i < layers; i++){
+	    output = output+"Layer "+i+": scale: "+noiseArray[i].getScale()+"\n";
+	}
+	return output;
+    }
+
     //Constructors
     public FractalNoise(int width, int height, int? seed, float xOrigin, float yOrigin, float scale) : base(width, height, seed, xOrigin, yOrigin, scale)
     {

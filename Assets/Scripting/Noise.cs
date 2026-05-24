@@ -9,6 +9,7 @@ public abstract class Noise
     protected float scale = 1.0f;
     protected int? seed;
     public virtual void updateScale(float newScale){this.scale = newScale;} //for testing, updates the scale of noise
+    public float getScale(){return this.scale;}
     public virtual void updateOrigin(float xOrigin, float yOrigin){this.xOrigin = xOrigin; this.yOrigin = yOrigin;} //for testing, updates origin
 
     protected Color[] pixels; //Array in which color values are stored in
@@ -51,6 +52,10 @@ public abstract class Noise
     }
 
     public abstract float NoiseFunction(float xCoord, float yCoord);
+
+    public override string ToString(){
+	return "Type: "+this.GetType()+", seed: "+seed+", scale: "+scale;
+    }
 
     //Constructors
     protected Noise(int width, int height, int? seed, float xOrigin, float yOrigin, float scale)

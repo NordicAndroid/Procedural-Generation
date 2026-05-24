@@ -49,6 +49,7 @@ public class WorldManager2 : MonoBehaviour
         }
         noise.updateScale(scale);
         noise.CalculateIslandTexture();
+	Debug.Log(noise);
         GenerateTerrain();
         ApplyTextures();
         treeFactory = new TreeGeneration(aPlantPrefab, aTreeMat);
