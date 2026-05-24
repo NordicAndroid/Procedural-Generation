@@ -56,7 +56,8 @@ public class FractalNoise : Noise
     public override string ToString(){
 	string output = "Type: "+this.GetType()+", seed: "+seed+", scale: "+scale+"\n";
 	for(int i = 0; i < layers; i++){
-	    output = output+"Layer "+i+": scale: "+noiseArray[i].getScale()+"\n";
+	    float strength = 1/(Mathf.Pow(i + 1, 1.75f) + 5);
+	    output = output+"Layer "+i+": scale: "+noiseArray[i].getScale()+", Strength: "+strength+"\n";
 	}
 	return output;
     }
