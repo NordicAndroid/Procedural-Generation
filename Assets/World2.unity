@@ -1705,7 +1705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WorldManager2
   width: 512
   height: 512
-  scale: 2
+  scale: 4
   depth: 300
   aPlantPrefab: {fileID: 1393204985216401875, guid: 32ebb73509362684e805be820eb3b608, type: 3}
   aTreeMat: {fileID: 2100000, guid: f0c777952a7074043bed0abf8650e7b4, type: 2}
@@ -2053,6 +2053,10 @@ PrefabInstance:
     - target: {fileID: 4083446326187317240, guid: c8c5a87818db0466e9b65ec2fd3da5c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218721674484763651, guid: c8c5a87818db0466e9b65ec2fd3da5c2, type: 3}
+      propertyPath: field of view
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8530024355959007855, guid: c8c5a87818db0466e9b65ec2fd3da5c2, type: 3}
       propertyPath: m_Name

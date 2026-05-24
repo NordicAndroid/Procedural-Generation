@@ -31,7 +31,7 @@ public class FractalNoise : Noise
             //Calculates the coordinates for where the noise is sampled.
             float xCoord = xOrigin + x / textureWidth * scale * (i + 1);
             float yCoord = yOrigin + y / textureHeight * scale * (i + 1);
-            sample += noiseArray[i].NoiseFunction(xCoord,yCoord) / ((i + 1) * (i + 1) * 2);
+            sample += noiseArray[i].NoiseFunction(xCoord,yCoord) / (Mathf.Pow(i + 1, 1.75f) + 5);
         }
         return sample;
     }
