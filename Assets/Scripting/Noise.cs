@@ -40,7 +40,7 @@ public abstract class Noise
             for(int x = 0; x < textureWidth; x++){
                 Vector3 centerCoords = new Vector3(textureWidth / 2, textureHeight / 2);
                 float distFromCenter = Mathf.Sqrt((centerCoords.x - x) * (centerCoords.x - x) + (centerCoords.y - y) * (centerCoords.y - y));
-                float sample = heights[x,y] / (0.0000001f * distFromCenter * distFromCenter * distFromCenter + 1) ;
+                float sample = heights[x,y] / (0.0000001f * Mathf.Pow(distFromCenter / (textureWidth / 500) , 3) + 1) ;
                 heights[x,y] = sample;
                 pixels[y * textureWidth + x] = new Color(sample, sample, sample);
             }
