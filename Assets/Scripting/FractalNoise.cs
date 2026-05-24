@@ -48,11 +48,10 @@ public class FractalNoise : Noise
     //for testing purposes
     public override void updateScale(float newScale){
         this.scale = newScale;
-        foreach (Noise noise in noiseArray)
-            {
-                noise.updateScale(newScale);
-            }
+        for(int i = 0; i < layers; i++){
+                noiseArray[i].updateScale(newScale * (i + 1));
         }
+    }
 
     //Constructors
     public FractalNoise(int width, int height, int? seed, float xOrigin, float yOrigin, float scale) : base(width, height, seed, xOrigin, yOrigin, scale)
