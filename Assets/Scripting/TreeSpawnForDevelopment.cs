@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TreeGenerator : MonoBehaviour 
+public class TreeSpawnForDevelopment : MonoBehaviour 
 {
     public GameObject aPlantPrefab;
     public Material aTreeMat;

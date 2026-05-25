@@ -14,10 +14,14 @@ public class TreeGeneration
     }
 
     // GenerationController should call this method to create a tree
-    public Plant SpawnPlant(Vector3 position)
+    public Plant SpawnPlant(Vector3 position,string determinedString = "")
     {
         // The L-string is expanded here
-        string expandedString = GenerateLSystemString();
+        string expandedString;
+        if(determinedString == "")
+            expandedString = GenerateLSystemString();
+        else
+            expandedString = determinedString;
 
         GameObject newPlantObj = UnityEngine.Object.Instantiate(plantPrefab, position, Quaternion.identity);
 
@@ -28,7 +32,7 @@ public class TreeGeneration
         return plantScript;
     }
 
-    private string GenerateLSystemString()
+    public string GenerateLSystemString()
     {
         string currentTree = axiom;
         for (int i = 0; i < iterations; i++)
@@ -43,5 +47,10 @@ public class TreeGeneration
             currentTree = nextIteration;
         }
         return currentTree;
+    }
+
+    public void SetIteration(int iter)
+    {
+        iterations = iter;
     }
 }
