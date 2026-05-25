@@ -8,7 +8,8 @@ public class WorldManager2 : MonoBehaviour
     public int width = 256;
     public int height = 256;
     public float scale = 20f;
-    public float depth = 20f; 
+    public float depth = 20f;
+    public float slopeLimit;
     public GameObject aPlantPrefab;
     public Material aTreeMat;
 
@@ -137,7 +138,7 @@ void SpawnVegetation()
 
                 //get the steepness and eliminate some points
                 float steepness = terrainData.GetSteepness(xPercent, yPercent);
-                if (steepness < 25f)
+                if (steepness < slopeLimit)
                 {
                     spawnPos.y = worldHeight;
                     treeFactory.SpawnPlant(spawnPos);

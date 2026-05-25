@@ -1,37 +1,26 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class FirstPerson : MonoBehaviour
 {
-    public float speed = 5;
-    public float sens = 15;
-    public Canvas startMenu;
-    private GameObject camera;
-    private CharacterController characterController;
-    private InputAction moveAction;
-    private Vector3 movementVector;
-    private Vector2 lookVector;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        moveAction = InputSystem.actions.FindAction("Move");
-        characterController = gameObject.GetComponent<CharacterController>();
-        camera = GameObject.Find("FirstPersonPlayer/Camera");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        lookVector = InputSystem.actions.FindAction("Look").ReadValue<Vector2>() * sens;
-        transform.Rotate(Vector3.up, lookVector.x * Time.deltaTime);
-        camera.transform.Rotate(Vector3.left, lookVector.y * Time.deltaTime);
-
-        movementVector = new Vector3(moveAction.ReadValue<Vector2>().x, movementVector.y, moveAction.ReadValue<Vector2>().y);
-        movementVector = movementVector * speed;
-        characterController.SimpleMove(movementVector);
-    }
     
+    public Canvas startMenu;
+    public float sensX;
+    public float sensY;
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    private void Update()
+    {
+        //Get Mouse input
+        //float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+    }
+
+
     public void SpawnPlayer()
     {
         gameObject.SetActive(true);
