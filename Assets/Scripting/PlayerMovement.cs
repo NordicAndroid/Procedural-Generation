@@ -17,5 +17,5 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = new Vector3(moveH, 0, moveV);
         rb.AddForce(movement * speed);
-    }
+    } 
 }
